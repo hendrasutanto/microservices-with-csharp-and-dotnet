@@ -108,7 +108,19 @@ An environment contains clusters and its deployed components such as Connectors,
     <img src="images/launch-cluster.png" width=50% height=50%>
 </div>
 
-## <a name="step-3"></a>**Step 3: Create a Topic and Cloud Dashboard Walkthrough**
+## <a name="step-3"></a>**Step 3: Create a ksqlDB Application
+
+1. On the navigation menu, select **ksqlDB** and click **Create Application Myself**. 
+2. Select **Global Access** and then **Continue**.
+3. Name you ksqlDB application and set the streaming units to **4**. Click **Launch Application!**
+
+> **Note:** A Confluent Streaming Unit is the unit of pricing for Confluent Cloud ksqlDB. A CSU is an abstract unit that represents the size of your kSQL cluster and scales linearly. 
+
+<div align="center" padding=25px>
+    <img src="images/create-application.png" width=50% height=50%>
+</div>
+
+## <a name="step-4"></a>**Step 4: Create a Topic and Cloud Dashboard Walkthrough**
 
 1. On the left hand side navigation menu, you will see **Cluster**.
 
@@ -137,7 +149,7 @@ An environment contains clusters and its deployed components such as Connectors,
        <img src="images/topic-overview.png" width=50% height=50%>
     </div>
 
-## <a name="step-4"></a>**Step 4: Create an API Key Pair**
+## <a name="step-5"></a>**Step 5: Create an API Key Pair**
 
 1. Select **API keys** on the navigation menu. 
 2. If this is your first API key within your cluster, click **Create key**. If you have set up API keys in your cluster in the past and already have an existing API key, click **+ Add key**.
@@ -149,7 +161,7 @@ An environment contains clusters and its deployed components such as Connectors,
 4. Save your API key and secret - you will need these during the workshop.
 5. After creating and saving the API key, you will see this API key in the Confluent Cloud UI in the **API keys** tab. If you don’t see the API key populate right away, refresh the browser. 
 
-## <a name="step-5"></a>**Step 5: Enable Schema Registry**
+## <a name="step-6"></a>**Step 6: Enable Schema Registry**
 
 A topic contains messages, and each message is a key-value pair. The message key or the message value (or both) can be serialized as JSON, Avro, or Protobuf. A schema defines the structure of the data format. 
 
@@ -167,9 +179,9 @@ You will be exploring Confluent Cloud Schema Registry in more detail towards the
       <img src="images/sr-tab.png" width=75% height=75%>
   </div>
 
-## <a name="step-6"></a>**Step 6: Connect C# Producer and Consumer to Confluent Cloud**
+## <a name="step-7"></a>**Step 7: Connect C# Producer and Consumer to Confluent Cloud**
 
 
-## <a name="step-6"></a>**Step 7: Launch Fully-Managed Datagen Source Connector in Confluent Cloud**
+## <a name="step-8"></a>**Step 8: Launch Fully-Managed Datagen Source Connector in Confluent Cloud**
 
 
