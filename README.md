@@ -108,7 +108,7 @@ An environment contains clusters and its deployed components such as Connectors,
     <img src="images/launch-cluster.png" width=50% height=50%>
 </div>
 
-## <a name="step-3"></a>**Step 3: Create a ksqlDB Application
+## <a name="step-3"></a>**Step 3: Create a ksqlDB Application**
 
 1. On the navigation menu, select **ksqlDB** and click **Create Application Myself**. 
 2. Select **Global Access** and then **Continue**.
