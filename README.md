@@ -167,3 +167,9 @@ You will be exploring Confluent Cloud Schema Registry in more detail towards the
       <img src="images/sr-tab.png" width=75% height=75%>
   </div>
 
+## <a name="step-6"></a>**Step 6: Connect C# Producer and Consumer to Confluent Cloud**
+
+
+## <a name="step-6"></a>**Step 7: Launch Fully-Managed Datagen Source Connector in Confluent Cloud**
+
+
