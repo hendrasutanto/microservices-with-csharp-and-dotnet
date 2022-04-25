@@ -184,4 +184,13 @@ You will be exploring Confluent Cloud Schema Registry in more detail towards the
 
 ## <a name="step-8"></a>**Step 8: Launch Fully-Managed Datagen Source Connector in Confluent Cloud**
 
+## **Confluent Resources and Further Testing**
 
+Here are some links to check out if you are interested in further testing:
+- [ksqlDB Tutorials](https://kafka-tutorials.confluent.io/)
+- [ksqlDB: The Event Streaming Database, Purpose-Build for Stream Processing](https://ksqldb.io/)
+- [Streams and Tables in Apache Kafka: A Primer](https://www.confluent.io/blog/kafka-streams-tables-part-1-event-streaming/)
+- [Confluent Cloud Documentation](https://docs.confluent.io/cloud/current/overview.html)
+- [Best Practices for Developing Apache Kafka Applications on Confluent Cloud](https://assets.confluent.io/m/14397e757459a58d/original/20200205-WP-Best_Practices_for_Developing_Apache_Kafka_Applications_on_Confluent_Cloud.pdf)
+- [Confluent Cloud Demos and Examples](https://docs.confluent.io/platform/current/tutorials/examples/ccloud/docs/ccloud-demos-overview.html)
+- [Kafka Connect Deep Dive – Error Handling and Dead Letter Queues](https://www.confluent.io/blog/kafka-connect-deep-dive-error-handling-dead-letter-queues/)
