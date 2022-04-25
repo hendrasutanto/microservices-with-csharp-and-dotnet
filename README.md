@@ -112,7 +112,7 @@ An environment contains clusters and its deployed components such as Connectors,
 
 1. On the navigation menu, select **ksqlDB** and click **Create Application Myself**. 
 2. Select **Global Access** and then **Continue**.
-3. Name you ksqlDB application and set the streaming units to **4**. Click **Launch Application!**
+3. Name you ksqlDB application and set the streaming units to **1**. Click **Launch Application!**
 
 > **Note:** A Confluent Streaming Unit is the unit of pricing for Confluent Cloud ksqlDB. A CSU is an abstract unit that represents the size of your kSQL cluster and scales linearly. 
 
@@ -133,18 +133,16 @@ An environment contains clusters and its deployed components such as Connectors,
 2. Click on **Settings**. This is an important tab that should be noted. This is where you can find your cluster ID, bootstrap server, cloud details, cluster type, and capacity limits. 
 3. Copy and save the bootstrap server - you will use it later in the workshop.
 4. On that same navigation menu, select **Topics** and click **Create Topic**. 
-5. Enter **dbserver1.inventory.customers** as the Topic name and **1** as the Number of partitions, then click on **Create with defaults**.
+5. Enter **pageviews** as the Topic name and **1** as the Number of partitions, then click on **Create with defaults**.
     <div align="center" padding=25px>
        <img src="images/new-topic.png" width=50% height=50%>
     </div>
-
-    **dbserver1.inventory.customers** is the name of the table within the Postgres database you will be setting up in a later section.
 
     > **Note:** Topics have many configurable parameters that dictate how messages are handled. A complete list of those configurations for Confluent Cloud can be found [here](https://docs.confluent.io/cloud/current/using/broker-config.html).  If you are interested in viewing the default configurations, you can view them in the Topic Summary on the right side. 
 
 6. After creation, the **Topics UI** allows you to monitor production and consumption throughput metrics and the configuration parameters for your topics. When you begin sending messages to Confluent Cloud, you will be able to view those messages and message schemas. 
 
-7. Below is a look at your topic, dbserver1.inventory.customers, but you need to send data to this topic before you see any metrics. 
+7. Below is a look at your topic, pageviews, but you need to send data to this topic before you see any metrics. 
     <div align="center" padding=25px>
        <img src="images/topic-overview.png" width=50% height=50%>
     </div>
@@ -166,8 +164,6 @@ An environment contains clusters and its deployed components such as Connectors,
 A topic contains messages, and each message is a key-value pair. The message key or the message value (or both) can be serialized as JSON, Avro, or Protobuf. A schema defines the structure of the data format. 
 
 Confluent Cloud Schema Registry is used to manage schemas and it defines a scope in which schemas can evolve. It stores a versioned history of all schemas, provides multiple compatibility settings, and allows schemas to evolve according to these compatibility settings. It is also fully-managed.
-
-You will be exploring Confluent Cloud Schema Registry in more detail towards the end of the workshop. First, you will need to enable Schema Registry within your environment.
 
 1. Return to your environment by clicking on the Confluent icon at the top left corner and then clicking your environment tile.
   <div align="center">
