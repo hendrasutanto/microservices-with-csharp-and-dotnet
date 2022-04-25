@@ -56,7 +56,7 @@
 
 ## **Objective:**
 
-## <a name="step-1"></a>**Log in to Confluent Cloud**
+## <a name="step-1"></a>**Step 1: Log in to Confluent Cloud**
 1. Log in to [Confluent Cloud](https://confluent.cloud) and enter your email and password.
 
 <div align="center" padding=25px>
@@ -67,7 +67,7 @@
 
 *** 
 
-## <a name="step-2"></a>**Create an Environment and Cluster**
+## <a name="step-2"></a>**Step 2: Create an Environment and Cluster**
 
 An environment contains clusters and its deployed components such as Connectors, ksqlDB, and Schema Registry. You have the ability to create different environments based on your company's requirements. Confluent has seen companies use environments to separate Development/Testing, Pre-Production, and Production clusters.
 
@@ -108,7 +108,7 @@ An environment contains clusters and its deployed components such as Connectors,
     <img src="images/launch-cluster.png" width=50% height=50%>
 </div>
 
-## <a name="step-3"></a>**Create a Topic and Cloud Dashboard Walkthrough**
+## <a name="step-3"></a>**Step 3: Create a Topic and Cloud Dashboard Walkthrough**
 
 1. On the left hand side navigation menu, you will see **Cluster**.
 
@@ -137,7 +137,7 @@ An environment contains clusters and its deployed components such as Connectors,
        <img src="images/topic-overview.png" width=50% height=50%>
     </div>
 
-## <a name="step-4"></a>**Create an API Key Pair**
+## <a name="step-4"></a>**Step 4: Create an API Key Pair**
 
 1. Select **API keys** on the navigation menu. 
 2. If this is your first API key within your cluster, click **Create key**. If you have set up API keys in your cluster in the past and already have an existing API key, click **+ Add key**.
@@ -149,7 +149,7 @@ An environment contains clusters and its deployed components such as Connectors,
 4. Save your API key and secret - you will need these during the workshop.
 5. After creating and saving the API key, you will see this API key in the Confluent Cloud UI in the **API keys** tab. If you don’t see the API key populate right away, refresh the browser. 
 
-## <a name="step-5"></a>**Enable Schema Registry**
+## <a name="step-5"></a>**Step 5: Enable Schema Registry**
 
 A topic contains messages, and each message is a key-value pair. The message key or the message value (or both) can be serialized as JSON, Avro, or Protobuf. A schema defines the structure of the data format. 
 
