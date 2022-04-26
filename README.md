@@ -183,15 +183,22 @@ Confluent Cloud Schema Registry is used to manage schemas and it defines a scope
 
 ### Setup
 
-1. Clone the [csharp client](https://github.com/hendrasutanto/csharp-clients) GitHub repository.
+1. To begin setting up **client**, you should have already cloned the repository during the prerequisites step. If you have not, start by cloning the [csharp client](https://github.com/hendrasutanto/csharp-clients) GitHub repository.
+    > **Note:** you can skip this step if you have already cloned the repository during the prerequisites step.
     ```bash
     git clone https://github.com/hendrasutanto/csharp-clients
     ```
-1.  Change directory to the csharp-client.
+1.  Change directory to the csharp-client directory.
     ```bash
     cd csharp-clients
     ```
-1. Modify csharp.config with configuration parameters to connect to your Kafka cluster. Subtitute your values for {{ BROKER_ENDPOINT }}, {{CLUSTER_API_KEY }}, and {{ CLUSTER_API_SECRET }}.
+1. The next step is to replace the placeholder values surrounded in angle brackets within `csharp.config` with configuration parameters to connect to your Kafka cluster. For reference, use the following table to fill out all the values completely.
+
+    | property               | created in step                         |
+    |------------------------|-----------------------------------------|
+    | `BOOTSTRAP_SERVERS`      | [*create an environment and cluster*](#create-an-environment-and-kafka-cluster) |
+    | `CLOUD_KEY`              | [*create an api key pair*](#create-an-api-key-pair)                  |
+    | `CLOUD_SECRET`           | [*create an api key pair*](#create-an-api-key-pair)                  |
 
 ## <a name="step-8"></a>**Step 8: Launch Fully-Managed Datagen Source Connector in Confluent Cloud**
 
