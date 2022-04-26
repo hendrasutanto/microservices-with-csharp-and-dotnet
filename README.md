@@ -183,6 +183,16 @@ Confluent Cloud Schema Registry is used to manage schemas and it defines a scope
 
 ### Setup
 
+1. Clone the [csharp client](https://github.com/hendrasutanto/csharp-clients) GitHub repository.
+    ```bash
+    git clone https://github.com/hendrasutanto/csharp-clients
+    ```
+1.  Change directory to the csharp-client.
+    ```bash
+    cd csharp-clients
+    ```
+1. Modify csharp.config with configuration parameters to connect to your Kafka cluster. Subtitute your values for {{ BROKER_ENDPOINT }}, {{CLUSTER_API_KEY }}, and {{ CLUSTER_API_SECRET }}.
+
 ## <a name="step-8"></a>**Step 8: Launch Fully-Managed Datagen Source Connector in Confluent Cloud**
 
 ## **Confluent Resources and Further Testing**
