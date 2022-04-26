@@ -185,7 +185,7 @@ Confluent Cloud Schema Registry is used to manage schemas and it defines a scope
     ```bash
     git clone https://github.com/hendrasutanto/csharp-clients
     ```
-1.  Change directory to the csharp-client directory.
+1. Change directory to the csharp-client directory.
     ```bash
     cd csharp-clients
     ```
@@ -196,6 +196,50 @@ Confluent Cloud Schema Registry is used to manage schemas and it defines a scope
     | `BROKER_ENDPOINT`      | [*create an environment and cluster*](#step-2) |
     | `CLUSTER_API_KEY`      | [*create an api key pair*](#step-5) |
     | `CLUSTER_API_SECRET`   | [*create an api key pair*](#step-5) |
+    
+### Produce Records
+
+1. Build the client example application
+    ```bash
+    dotnet build
+    ```
+1. Run the example application, passing in arguments for:
+   - whether to produce or consume messages
+   - the topic name
+   - the local file with configuration parameters to connect to your Kafka cluster
+   - Windows only: a local file with default trusted root CA certificates
+    ```bash
+    # Run the producer (Windows)
+    dotnet run produce test1 $HOME/.confluent/librdkafka.config /path/to/curl/cacert.pem
+    
+    # Run the producer (other)
+    dotnet run produce test1 $HOME/.confluent/librdkafka.config
+    ```
+1. Verify that the producer sent all the messages. You should see:
+    ```bash
+    Producing record: 10 {"viewtime":10,"userid":"User_3","pageid":"Page_44"}
+    Producing record: 20 {"viewtime":20,"userid":"User_4","pageid":"Page_60"}
+    Producing record: 30 {"viewtime":30,"userid":"User_2","pageid":"Page_63"}
+    Producing record: 40 {"viewtime":40,"userid":"User_2","pageid":"Page_73"}
+    Producing record: 50 {"viewtime":50,"userid":"User_6","pageid":"Page_53"}
+    Producing record: 60 {"viewtime":60,"userid":"User_7","pageid":"Page_57"}
+    Producing record: 70 {"viewtime":70,"userid":"User_4","pageid":"Page_15"}
+    Producing record: 80 {"viewtime":80,"userid":"User_4","pageid":"Page_32"}
+    Producing record: 90 {"viewtime":90,"userid":"User_8","pageid":"Page_28"}
+    Producing record: 100 {"viewtime":100,"userid":"User_2","pageid":"Page_45"}
+    Produced message to: pageviews [[0]] @0
+    Produced message to: pageviews [[0]] @1
+    Produced message to: pageviews [[0]] @2
+    Produced message to: pageviews [[0]] @3
+    Produced message to: pageviews [[0]] @4
+    Produced message to: pageviews [[0]] @5
+    Produced message to: pageviews [[0]] @6
+    Produced message to: pageviews [[0]] @7
+    Produced message to: pageviews [[0]] @8
+    Produced message to: pageviews [[0]] @9
+    10 messages were produced to topic pageviews
+    ```
+1. View the [producer code](https://github.com/hendrasutanto/csharp-clients/blob/main/Program.cs)
 
 ## <a name="step-8"></a>**Step 8: Launch Fully-Managed Datagen Source Connector in Confluent Cloud**
 
