@@ -181,6 +181,7 @@ Confluent Cloud Schema Registry is used to manage schemas and it defines a scope
 
 ## <a name="step-7"></a>**Step 7: Connect C# Producer and Consumer to Confluent Cloud**
 
+### Setup
 
 ## <a name="step-8"></a>**Step 8: Launch Fully-Managed Datagen Source Connector in Confluent Cloud**
 
