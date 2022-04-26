@@ -23,7 +23,7 @@
 
 1. .NET 5 or above - [Download .NET 5.0 (Linux, macOS, and Windows)](https://dotnet.microsoft.com/download/dotnet/5.0)
 
-1. Visual Studio Code - [Download Visual Studio Code (Mac, Linux, Windows)](https://code.visualstudio.com/Download)
+1. Visual Studio Code (Optional) - [Download Visual Studio Code (Mac, Linux, Windows)](https://code.visualstudio.com/Download)
 
 1. Confluent Cloud Account
     - Sign-up for a Confluent Cloud account [here](https://www.confluent.io/confluent-cloud/tryfree/)
@@ -204,16 +204,16 @@ Confluent Cloud Schema Registry is used to manage schemas and it defines a scope
     dotnet build
     ```
 1. Run the example application, passing in arguments for:
-   - whether to produce or consume messages
-   - the topic name
+   - whether to produce or consume (produce)
+   - the topic name (pageviews)
    - the local file with configuration parameters to connect to your Kafka cluster
    - Windows only: a local file with default trusted root CA certificates
     ```bash
     # Run the producer (Windows)
-    dotnet run produce test1 $HOME/.confluent/librdkafka.config /path/to/curl/cacert.pem
+    dotnet run produce pageviews csharp.config /path/to/curl/cacert.pem
     
     # Run the producer (other)
-    dotnet run produce test1 $HOME/.confluent/librdkafka.config
+    dotnet run produce pageviews csharp.config
     ```
 1. Verify that the producer sent all the messages. You should see:
     ```bash
@@ -240,6 +240,37 @@ Confluent Cloud Schema Registry is used to manage schemas and it defines a scope
     10 messages were produced to topic pageviews
     ```
 1. View the [producer code](https://github.com/hendrasutanto/csharp-clients/blob/main/Program.cs)
+
+### Consume Records
+
+1. Run the example application, passing in arguments for:
+   - whether to produce or consume (produce)
+   - the topic name: same topic name as used above
+   - the local file with configuration parameters to connect to your Kafka cluster
+   - Windows only: a local file with default trusted root CA certificates
+    ```bash
+    # Run the consumer (Windows)
+    dotnet run consume pageviews csharp.config /path/to/curl/cacert.pem
+    
+    # Run the consumer (other)
+    dotnet run consume pageviews csharp.config
+    ```
+1. Verify that the consumer sent all the messages. You should see:
+    ```bash
+    Consumed record with key 10 and value {"viewtime":10,"userid":"User_3","pageid":"Page_44"}
+    Consumed record with key 20 and value {"viewtime":20,"userid":"User_4","pageid":"Page_60"}
+    Consumed record with key 30 and value {"viewtime":30,"userid":"User_2","pageid":"Page_63"}
+    Consumed record with key 40 and value {"viewtime":40,"userid":"User_2","pageid":"Page_73"}
+    Consumed record with key 50 and value {"viewtime":50,"userid":"User_6","pageid":"Page_53"}
+    Consumed record with key 60 and value {"viewtime":60,"userid":"User_7","pageid":"Page_57"}
+    Consumed record with key 70 and value {"viewtime":70,"userid":"User_4","pageid":"Page_15"}
+    Consumed record with key 80 and value {"viewtime":80,"userid":"User_4","pageid":"Page_32"}
+    Consumed record with key 90 and value {"viewtime":90,"userid":"User_8","pageid":"Page_28"}
+    Consumed record with key 100 and value {"viewtime":100,"userid":"User_2","pageid":"Page_45"}
+    ```
+1. When you are done, press `<ctrl>-c`.
+
+1. View the [consumer code](https://github.com/hendrasutanto/csharp-clients/blob/main/Program.cs)
 
 ## <a name="step-8"></a>**Step 8: Launch Fully-Managed Datagen Source Connector in Confluent Cloud**
 
