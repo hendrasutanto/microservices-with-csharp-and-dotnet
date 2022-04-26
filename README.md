@@ -95,9 +95,6 @@ An environment contains clusters and its deployed components such as Connectors,
 
 4. Click **Begin Configuration**.
 5. Choose your preferred Cloud Provider (AWS, GCP, or Azure), Region, and Availability Zone.
-     * **Choose the cloud provider you have your object storage set up with** 
-     * **Choose the same region where your object storage resource is deployed**
-
 6. Specify a **Cluster Name** - any name will work here. 
 
 <div align="center" padding=25px>
@@ -196,9 +193,9 @@ Confluent Cloud Schema Registry is used to manage schemas and it defines a scope
 
     | property               | created in step                         |
     |------------------------|-----------------------------------------|
-    | `BOOTSTRAP_SERVERS`      | [*create an environment and cluster*](#create-an-environment-and-kafka-cluster) |
-    | `CLOUD_KEY`              | [*create an api key pair*](#create-an-api-key-pair)                  |
-    | `CLOUD_SECRET`           | [*create an api key pair*](#create-an-api-key-pair)                  |
+    | `BROKER_ENDPOINT`      | [*create an environment and cluster*](#step-2) |
+    | `CLUSTER_API_KEY`      | [*create an api key pair*](#step-5) |
+    | `CLUSTER_API_SECRET`   | [*create an api key pair*](#step-5) |
 
 ## <a name="step-8"></a>**Step 8: Launch Fully-Managed Datagen Source Connector in Confluent Cloud**
 
