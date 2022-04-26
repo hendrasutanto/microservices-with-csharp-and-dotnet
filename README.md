@@ -44,16 +44,15 @@
     # Check the git version
     git --version
     ```
-1. Clone Confluent's Commercial SE workshop repository to your machine to access useful files. 
-    > **Note:** This repository contains **all** of the workshops and workshop series Confluent's Commercial SE team has created. Be sure to navigate to the correct sub-folder to use the right content.
+1. Clone the csharp client GitHub repository to your machine to access useful files.
     ```bash
-    # clone the Commercial SE workshop repository
-    git clone https://github.com/confluentinc/commercial-workshops.git
+    # clone the csharp client GitHub repository
+    git clone https://github.com/hendrasutanto/csharp-clients
     ```
     Navigate to the correct sub-folder to access this labs content. This should act as your working directory for the remainder of the lab. 
     ```bash 
     # navigate to the correct sub-folder
-    cd commercial-workshops/series-getting-started-with-cc/workshop-connectors/
+    cd csharp-clients
     ```
 
 ***
