@@ -274,7 +274,11 @@ Confluent Cloud Schema Registry is used to manage schemas and it defines a scope
 
 ### Troubleshooting: Configure SSL trust store
 
-Depending on your operating system, there may be complexity around the `SslCaLocation` config, which specifies the path to your SSL CA root certificates. Details vary by platform, but specifying [probe](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.ClientConfig.html?&_ga=2.243712013.908474894.1650776386-1143044496.1649729923#Confluent_Kafka_ClientConfig_SslCaLocation) may be sufficient for most cases. For more information, see [SSL in librdkafka](https://github.com/edenhill/librdkafka/blob/master/INTRODUCTION.md#ssl).
+Depending on your operating system, there may be complexity around the `SslCaLocation` config, which specifies the path to your SSL CA root certificates. If your system doesn’t have the SSL CA root certificates properly set up, you may receive a `SSL handshake failed` error message similar to the following:
+```bash
+%3|1605776788.619|FAIL|rdkafka#producer-1| [thrd:sasl_ssl://...confluent.cloud:9092/bootstr]: sasl_ssl://...confluent.cloud:9092/bootstrap: SSL handshake failed: error:14090086:SSL routines:ssl3_get_server_certificate:certificate verify failed: broker certificate could not be verified, verify that ssl.ca.location is correctly configured or root CA certificates are installed (brew install openssl) (after 258ms in state CONNECT)
+```
+For further troubleshooting information, see [Configur SSL trust store](https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/csharp.html?utm_source=github&utm_medium=demo&utm_campaign=ch.examples_type.community_content.clients-ccloud#configure-ssl-trust-store).
 
 ## <a name="step-8"></a>**Step 8: Launch Fully-Managed Datagen Source Connector in Confluent Cloud**
 
