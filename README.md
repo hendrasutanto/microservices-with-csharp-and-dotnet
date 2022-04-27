@@ -281,6 +281,45 @@ For further troubleshooting information, see [Configure SSL trust store](https:/
 
 ## <a name="step-8"></a>**Step 8: Launch Fully-Managed Datagen Source Connector in Confluent Cloud**
 
+In real world, the user data is usually stored in a database and a Debezium/CDC (Change Data Capture) source connector can be used to stream the data to Kafka. In this workshop, you will set up a fully-managed connector that is used to generate mock user data.
+> **Note:** With fully-managed connectors, Confluent hosts and manages the Connect cluster and connector for you. Simply configure the connector of your choice to stream events between Confluent Cloud and your external systems. Confluent offers 30+ fully-managed connectors, with more on the way! You can view the full list [here](https://docs.confluent.io/cloud/current/connectors/index.html)
+
+1. Within Confluent Cloud, click on **Connectors**. You should see a list of connectors under **Fully Managed**. 
+
+    <div align="center">
+       <img src="images/cc-fully-managed-connectors.png" width=75% height=75%>
+    </div>
+
+2. Click on **Connect** for the Datagen Source. 
+    <div align="center">
+       <img src="images/cc-source-datagen.png" width=25% height=25%>\
+    </div>
+
+3. Complete the configuration details. 
+
+    | Configuration Setting               | Value                         |
+    |------------------------|-----------------------------------------|
+    | Select or create new topics | Add new topic `users` with `1` partition                      |
+    | Kafka credentials                          | Use an existing API key                            |
+    | Kafka API Key                              | Key created in [*create an api key pair*](#step-4) |
+    | Kafka API Secret                           | Key created in [*create an api key pair*](#step-4) |
+    | Select a template                          | Select `Users`                                     |
+    | Select output record value format          | AVRO                                               |
+    | Tasks                                      | 1                                                  |
+    | Connector name                             | Enter any connector name                           |
+
+    This should be your output before you **Launch** the connector, with the exception of the GCP/AWS/Azure credentials - please complete the details for your own credentials. Note this example is for S3:
+
+    <div align="center">
+       <img src="images/cc-datagen-config-example.png" width=30% height=30%>
+    </div>
+
+4. View the connector, its status, and metrics on the **Connectors** page.
+
+    <div align="center">  
+       <img src="images/cc-connector-status.png" width=75% height=75%>
+    </div>
+
 ## **Confluent Resources and Further Testing**
 
 Here are some links to check out if you are interested in further testing:
