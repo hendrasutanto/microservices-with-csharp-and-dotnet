@@ -331,7 +331,7 @@ In real world, the user data is usually stored in a database and a Debezium/CDC 
        <img src="images/cc-schema.png" width=75% height=75%>
     </div>
     
-For more information about schema evolution and compatibility, click [here](https://docs.confluent.io/platform/current/schema-registry/avro.html)
+   For more information about schema evolution and compatibility, click [here](https://docs.confluent.io/platform/current/schema-registry/avro.html)
 
 ## **Confluent Resources and Further Testing**
 
