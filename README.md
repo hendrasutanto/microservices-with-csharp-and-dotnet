@@ -473,7 +473,7 @@ Deleting the resources you created during this workshop will prevent you from in
     <img src="images/delete-ksqldb.png" width=75% height=75%>
 </div>
 
-2. Next, delete the Datagen Source connectors for **users** and **stocks**. Navigate to the **Connectors** tab and select each connector. In the top right corner, you will see a **trash** icon. Click the icon and enter the **Connector Name**. Delete both the **users** and **stocks** connectors. 
+2. Next, delete the Datagen Source connectors for **users**. Navigate to the **Connectors** tab and select the **users** connector. In the top right corner, you will see a **trash** icon. Click the icon and enter the **Connector Name**. Delete the **users** connector.
 
 <div align="center">
     <img src="images/delete-connectors.png" width=75% height=75%>
