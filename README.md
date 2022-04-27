@@ -333,6 +333,159 @@ In real world, the user data is usually stored in a database and a Debezium/CDC 
     
    For more information about schema evolution and compatibility, click [here](https://docs.confluent.io/platform/current/schema-registry/avro.html)
 
+## <a name="step-9"></a>**Step 9: Real-Time Data Transformations and Stream Processing wiith ksqlDB**
+
+### Create a Stream and a Table
+
+Now that you are producing a continuous stream of data to `users` and `pageviews` topic, you will use ksqlDB to understand the data better by performing continuous transformations and creating new derived topics with the enriched data.
+
+You will start by creating a stream and table, which will be the foundation for your transformations in the upcoming steps.
+
+A *stream* provides immutable data. It is append only for new events; existing events cannot be changed. Streams are persistent, durable, and fault tolerant. Events in a stream can be keyed.
+
+A *table* provides mutable data. New events—rows—can be inserted, and existing rows can be updated and deleted. Like streams, tables are persistent, durable, and fault tolerant. A table behaves much like an RDBMS materialized view because it is being changed automatically as soon as any of its input streams or tables change, rather than letting you directly run insert, update, or delete operations against it.
+
+To learn more about *streams* and *tables*, the following resources are recommended:
+- [Streams and Tables in Apache Kafka: A Primer](https://www.confluent.io/blog/kafka-streams-tables-part-1-event-streaming/)
+- [ksqlDB: Data Definition](https://docs.ksqldb.io/en/latest/reference/sql/data-definition/)
+
+1. Navigate back to the **ksqlDB** tab and click on your application name. This will bring us to the ksqlDB editor. 
+
+> **Note:** You can interact with ksqlDB through the **Editor**. You can create a stream by using the `CREATE STREAM` statement and a table using the `CREATE TABLE` statement. <br><br>To write streaming queries against **users_topic** and **stocks_topic**, you will need to register the topics with ksqlDB as a stream and/or table. 
+
+2. First, create a **Stream** by registering the **stocks_topic** as a stream called **stocks_stream**. 
+
+```sql
+CREATE STREAM stocks_stream (
+    side varchar, 
+    quantity int, 
+    symbol varchar, 
+    price int, 
+    account varchar, 
+    userid varchar
+) 
+WITH (kafka_topic='stocks_topic', value_format='JSON');
+```
+
+3. Next, go to the **Streams** tab at the top and click on **STOCKS_STREAM**. This provides information on the stream, output topic (including replication, partitions, and key and value serialization), and schemas.
+
+<div align="center">
+    <img src="images/stream-detail.png" width=50% height=50%>
+</div>
+
+4. Click on **Query Stream** which will take you back to the **Editor**. You will see the following query auto-populated in the editor which may be already running by default. If not, click on **Run query**. To see data already in the topic, you can set the `auto.offset.reset=earliest` property before clicking **Run query**. <br> <br> Optionally, you can navigate to the editor and construct the select statement on your own, which should look like the following.
+
+```sql
+SELECT * FROM STOCKS_STREAM EMIT CHANGES;
+```
+
+5. You should see the following data within your **STOCKS_STREAM** stream.
+
+<div align="center">
+    <img src="images/stocks-stream-select-results.png" width=75% height=75%>
+</div>
+
+6. Click **Stop**. 
+7. Next, create a **Table** by registering the **users_topic** as a table named **users**. Copy the following code into the **Editor** and click **Run**. 
+
+```sql
+CREATE TABLE users (
+    userid varchar PRIMARY KEY, 
+    registertime bigint, 
+    gender varchar, 
+    regionid varchar
+) 
+WITH (KAFKA_TOPIC='users_topic', VALUE_FORMAT='JSON');
+```
+
+8. Once you have created the **USERS** table, repeat what you did above with **STOCKS_STREAMS** and query the **USERS** table. This time, select the **Tables** tab and then select the **USERS** table. You can also set the `auto.offset.reset=earliest`. Like above, if you prefer to construct the statement on your own, make sure it looks like the following. 
+
+```sql
+SELECT * FROM USERS EMIT CHANGES;
+```
+
+ * You should see the following data in the messages output.
+
+<div align="center">
+    <img src="images/users-table-select-results.png" width=75% height=75%>
+</div>
+
+> **Note:** Note: If the output does not show up immediately, you may have done everything correctly and it just needs a moment. Setting `auto.offset.reset=earliest` also helps output data faster since the messages are already in the topics.
+
+9. Stop the query by clicking **Stop**. 
+
+***
+
+## <a name="step-10"></a>Create a Persistent Query
+
+A *Persistent Query* runs indefinitely as it processes rows of events and writes to a new topic. You can create persistent queries by deriving new streams and new tables from existing streams or tables.
+
+1. Create a **Persistent Query** named **stocks_enriched** by left joining the stream (**STOCKS_STREAM**) and table (**USERS**). Navigate to the **Editor** and paste the following command.
+
+```sql
+CREATE STREAM stocks_enriched AS
+    SELECT users.userid AS userid, 
+           regionid, 
+           gender, 
+           side, 
+           quantity, 
+           symbol, 
+           price, 
+           account
+    FROM stocks_stream
+    LEFT JOIN users
+    ON stocks_stream.userid = users.userid
+EMIT CHANGES;
+```
+
+2. Using the **Editor**, query the new stream. You can either type in a select statement or you can navigate to the stream and select the query button, similar to how you did it in a previous step. You can also choose to set `auto.offset.reset=earliest`. Your statement should be the following. 
+
+```sql
+SELECT * FROM STOCKS_ENRICHED EMIT CHANGES;
+```
+* The output from the select statement should be similar to the following: <br> 
+
+<div align="center">
+    <img src="images/stocks-enriched-select-results.png" width=75% height=75%>
+</div> 
+
+> **Note:** Now that you have a stream of records from the left join of the **USERS** table and **STOCKS_STREAM** stream, you can view the relationship between user and trades in real-time.
+
+4. Next, view the topic created when you created the persistent query with the left join. Navigate to the **Topics** tab on the left hand menu and then select the topic prefixed with a unique ID followed by **STOCKS_ENRICHED**. It should resemble **pksqlc-xxxxxSTOCKS_ENRICHED**. 
+
+<div align="center">
+    <img src="images/stocks-enriched-topic.png" width=75% height=75%>
+</div>
+
+5. Navigate to **Consumers** on the left hand menu and find the group that corresponds with your **STOCKS_ENRICHED** stream. See the screenshot below as an example. This view shows how well your persistent query is keeping up with the incoming data. You can monitor the consumer lag, current and end offsets, and which topics it is consuming from.
+
+<div align="center">
+    <img src="images/ksql-consumer.png" width=75% height=75%>
+</div>
+
+## **Clean Up Resources**
+
+Deleting the resources you created during this workshop will prevent you from incurring additional charges. 
+
+1. The first item to delete is the ksqlDB application. Select the **Delete** button under **Actions** and enter the **Application Name** to confirm the deletion. 
+
+<div align="center">
+    <img src="images/delete-ksqldb.png" width=75% height=75%>
+</div>
+
+2. Next, delete the Datagen Source connectors for **users** and **stocks**. Navigate to the **Connectors** tab and select each connector. In the top right corner, you will see a **trash** icon. Click the icon and enter the **Connector Name**. Delete both the **users** and **stocks** connectors. 
+
+<div align="center">
+    <img src="images/delete-connectors.png" width=75% height=75%>
+</div>
+
+3. Finally, under **Cluster Settings**, select the **Delete Cluster** button at the bottom. Enter the **Cluster Name** and select **Confirm**. 
+
+<div align="center">
+    <img src="images/delete-cluster.png" width=50% height=50%>
+</div>
+
+
 ## **Confluent Resources and Further Testing**
 
 Here are some links to check out if you are interested in further testing:
