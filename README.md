@@ -328,7 +328,7 @@ In real world, the user data is usually stored in a database and a Debezium/CDC 
 7. Click on the `Schema` tab. Here you can see the schema value for your topic. The following is an example of what your schema may look like. Note that it shows the Format (AVRO), Compatibility Mode (Default is set as Backward), Schema ID, and Version.
 
     <div align="center">
-       <img src="images/cc-schema" width=30% height=30%>
+       <img src="images/cc-schema.png" width=30% height=30%>
     </div>
     
 For more information about schema evolution and compatibility, click [here](https://docs.confluent.io/platform/current/schema-registry/avro.html)
