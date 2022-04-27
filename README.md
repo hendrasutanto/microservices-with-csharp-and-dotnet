@@ -308,7 +308,7 @@ In real world, the user data is usually stored in a database and a Debezium/CDC 
     | Tasks                                      | 1                                                  |
     | Connector name                             | Enter any connector name                           |
 
-    This should be your output before you **Launch** the connector, with the exception of the GCP/AWS/Azure credentials - please complete the details for your own credentials.
+    This should be your output before you **Launch** the connector.
 
     <div align="center">
        <img src="images/cc-datagen-config-example.png" width=75% height=75%>
