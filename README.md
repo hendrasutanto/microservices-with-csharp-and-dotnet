@@ -311,7 +311,7 @@ In real world, the user data is usually stored in a database and a Debezium/CDC 
     This should be your output before you **Launch** the connector, with the exception of the GCP/AWS/Azure credentials - please complete the details for your own credentials.
 
     <div align="center">
-       <img src="images/cc-datagen-config-example.png" width=30% height=30%>
+       <img src="images/cc-datagen-config-example.png" width=75% height=75%>
     </div>
 
 4. View the connector, its status, and metrics on the **Connectors** page.
@@ -323,12 +323,12 @@ In real world, the user data is usually stored in a database and a Debezium/CDC 
 5. Once the connector is successfully launched. Navigate to `Topics` and select `users` topic.
 
 6. You should see some messages being produced on this topic under the `Messages` tab.
-> **Note:** The messages contain some unreadable characters due to the Avro format.
+   > **Note:** The messages contain some unreadable characters due to the Avro format.
 
 7. Click on the `Schema` tab. Here you can see the schema value for your topic. The following is an example of what your schema may look like. Note that it shows the Format (AVRO), Compatibility Mode (Default is set as Backward), Schema ID, and Version.
 
     <div align="center">
-       <img src="images/cc-schema.png" width=30% height=30%>
+       <img src="images/cc-schema.png" width=75% height=75%>
     </div>
     
 For more information about schema evolution and compatibility, click [here](https://docs.confluent.io/platform/current/schema-registry/avro.html)
