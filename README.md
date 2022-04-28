@@ -254,7 +254,7 @@ Confluent Cloud Schema Registry is used to manage schemas and it defines a scope
     # Run the consumer (other)
     dotnet run consume pageviews csharp.config
     ```
-1. Verify that the consumer sent all the messages. You should see:
+1. Verify that the consumer received all the messages. You should see:
     ```bash
     Consumed record with key 10 and value {"viewtime":10,"userid":"User_3","pageid":"Page_44"}
     Consumed record with key 20 and value {"viewtime":20,"userid":"User_4","pageid":"Page_60"}
@@ -353,21 +353,20 @@ To learn more about *streams* and *tables*, the following resources are recommen
 
 > **Note:** You can interact with ksqlDB through the **Editor**. You can create a stream by using the `CREATE STREAM` statement and a table using the `CREATE TABLE` statement. <br><br>To write streaming queries against **users_topic** and **stocks_topic**, you will need to register the topics with ksqlDB as a stream and/or table. 
 
-2. First, create a **Stream** by registering the **stocks_topic** as a stream called **stocks_stream**. 
+2. First, create a **Stream** by registering the **pageviews** topic as a stream called **pageviews**. 
 
-```sql
-CREATE STREAM stocks_stream (
-    side varchar, 
-    quantity int, 
-    symbol varchar, 
-    price int, 
-    account varchar, 
-    userid varchar
-) 
-WITH (kafka_topic='stocks_topic', value_format='JSON');
-```
+   ```sql
+   CREATE STREAM pageviews (
+       viewtime bigint,
+       userid varchar,
+       pageid varchar
+   ) WITH (
+       kafka_topic='pageviews',
+       value_format='JSON'
+   );
+   ```
 
-3. Next, go to the **Streams** tab at the top and click on **STOCKS_STREAM**. This provides information on the stream, output topic (including replication, partitions, and key and value serialization), and schemas.
+3. Next, go to the **Streams** tab at the top and click on **PAGEVIEWS**. This provides information on the stream, output topic (including replication, partitions, and key and value serialization), and schemas.
 
 <div align="center">
     <img src="images/stream-detail.png" width=50% height=50%>
@@ -375,34 +374,33 @@ WITH (kafka_topic='stocks_topic', value_format='JSON');
 
 4. Click on **Query Stream** which will take you back to the **Editor**. You will see the following query auto-populated in the editor which may be already running by default. If not, click on **Run query**. To see data already in the topic, you can set the `auto.offset.reset=earliest` property before clicking **Run query**. <br> <br> Optionally, you can navigate to the editor and construct the select statement on your own, which should look like the following.
 
-```sql
-SELECT * FROM STOCKS_STREAM EMIT CHANGES;
-```
+   ```sql
+   SELECT * FROM PAGEVIEWS EMIT CHANGES;
+   ```
 
-5. You should see the following data within your **STOCKS_STREAM** stream.
+5. You should see the following data within your **PAGEVIEWSM** stream.
 
 <div align="center">
-    <img src="images/stocks-stream-select-results.png" width=75% height=75%>
+    <img src="images/pageviews-stream-select-results.png" width=75% height=75%>
 </div>
 
 6. Click **Stop**. 
-7. Next, create a **Table** by registering the **users_topic** as a table named **users**. Copy the following code into the **Editor** and click **Run**. 
+7. Next, create a **Table** by registering the **users** topic as a table named **users**. Copy the following code into the **Editor** and click **Run**.
+   ```sql
+   CREATE TABLE users (
+       id VARCHAR PRIMARY KEY
+   ) WITH (
+       KAFKA_TOPIC = 'users', 
+       VALUE_FORMAT = 'AVRO'
+   );
+   ```
+   > **Note:** ksqlDB can integrate with Confluent Schema Registry and automatically retrieves (reads) and registers (writes) schemas as needed, which spares you from defining columns and data types manually in `CREATE` statements and from manual interaction with Schema Registry.
 
-```sql
-CREATE TABLE users (
-    userid varchar PRIMARY KEY, 
-    registertime bigint, 
-    gender varchar, 
-    regionid varchar
-) 
-WITH (KAFKA_TOPIC='users_topic', VALUE_FORMAT='JSON');
-```
+8. Once you have created the **USERS** table, repeat what you did above with **PAGEVIEWS** stream and query the **USERS** table. This time, select the **Tables** tab and then select the **USERS** table. You can also set the `auto.offset.reset=earliest`. Like above, if you prefer to construct the statement on your own, make sure it looks like the following.
 
-8. Once you have created the **USERS** table, repeat what you did above with **STOCKS_STREAMS** and query the **USERS** table. This time, select the **Tables** tab and then select the **USERS** table. You can also set the `auto.offset.reset=earliest`. Like above, if you prefer to construct the statement on your own, make sure it looks like the following. 
-
-```sql
-SELECT * FROM USERS EMIT CHANGES;
-```
+   ```sql
+   SELECT * FROM USERS EMIT CHANGES;
+   ```
 
  * You should see the following data in the messages output.
 
@@ -420,49 +418,65 @@ SELECT * FROM USERS EMIT CHANGES;
 
 A *Persistent Query* runs indefinitely as it processes rows of events and writes to a new topic. You can create persistent queries by deriving new streams and new tables from existing streams or tables.
 
-1. Create a **Persistent Query** named **stocks_enriched** by left joining the stream (**STOCKS_STREAM**) and table (**USERS**). Navigate to the **Editor** and paste the following command.
+1. Create a **Persistent Query** named **pageviews_enriched** by left joining the stream (**PAGEVIEWS**) and table (**USERS**), and filter the results with female users. Navigate to the **Editor** and paste the following command.
 
-```sql
-CREATE STREAM stocks_enriched AS
-    SELECT users.userid AS userid, 
-           regionid, 
-           gender, 
-           side, 
-           quantity, 
-           symbol, 
-           price, 
-           account
-    FROM stocks_stream
-    LEFT JOIN users
-    ON stocks_stream.userid = users.userid
-EMIT CHANGES;
-```
+   ```sql
+   CREATE STREAM pageviews_enriched with (kafka_topic='pageviews_enriched', partitions=1, value_format='JSON') AS
+       SELECT users.id AS userid, pageid, regionid, gender
+       FROM pageviews
+       LEFT JOIN users
+         ON pageviews.userid = users.id
+       WHERE (USERS.GENDER = 'FEMALE')
+   EMIT CHANGES;
+   ```
 
 2. Using the **Editor**, query the new stream. You can either type in a select statement or you can navigate to the stream and select the query button, similar to how you did it in a previous step. You can also choose to set `auto.offset.reset=earliest`. Your statement should be the following. 
 
-```sql
-SELECT * FROM STOCKS_ENRICHED EMIT CHANGES;
-```
+   ```sql
+   SELECT * FROM PAGEVIEWS_ENRICHED EMIT CHANGES;
+   ```
 * The output from the select statement should be similar to the following: <br> 
 
 <div align="center">
-    <img src="images/stocks-enriched-select-results.png" width=75% height=75%>
+    <img src="images/pageviews-enriched-select-results.png" width=75% height=75%>
 </div> 
 
-> **Note:** Now that you have a stream of records from the left join of the **USERS** table and **STOCKS_STREAM** stream, you can view the relationship between user and trades in real-time.
+> **Note:** Now that you have a stream of records from the left join of the **USERS** table and **PAGEVIEWS** stream, you can view the relationship between user and pageviews in real-time.
 
-4. Next, view the topic created when you created the persistent query with the left join. Navigate to the **Topics** tab on the left hand menu and then select the topic prefixed with a unique ID followed by **STOCKS_ENRICHED**. It should resemble **pksqlc-xxxxxSTOCKS_ENRICHED**. 
+4. Next, view the topic created when you created the persistent query with the left join. Navigate to the **Topics** tab on the left hand menu and then select the topic **pageviews_enriched**. 
 
 <div align="center">
-    <img src="images/stocks-enriched-topic.png" width=75% height=75%>
+    <img src="images/pageviews-enriched-topic.png" width=75% height=75%>
 </div>
 
-5. Navigate to **Consumers** on the left hand menu and find the group that corresponds with your **STOCKS_ENRICHED** stream. See the screenshot below as an example. This view shows how well your persistent query is keeping up with the incoming data. You can monitor the consumer lag, current and end offsets, and which topics it is consuming from.
+5. Navigate to **Consumers** on the left hand menu and find the group that corresponds with your **PAGEVIEWS_ENRICHED** stream. See the screenshot below as an example. This view shows how well your persistent query is keeping up with the incoming data. You can monitor the consumer lag, current and end offsets, and which topics it is consuming from.
 
 <div align="center">
     <img src="images/ksql-consumer.png" width=75% height=75%>
 </div>
 
+6. Run the consumer application and consume the messages from **pageviews_enriched** topic.
+    ```bash
+    # Run the consumer (Windows)
+    dotnet run consume pageviews_enriched csharp.config /path/to/curl/cacert.pem
+    
+    # Run the consumer (other)
+    dotnet run consume pageviews_enriched csharp.config
+    ```
+7. Verify that the consumer received all the enriched messages. You should see:
+    ```bash
+    Consumed record with key 10 and value {"viewtime":10,"userid":"User_3","pageid":"Page_44"}
+    Consumed record with key 20 and value {"viewtime":20,"userid":"User_4","pageid":"Page_60"}
+    Consumed record with key 30 and value {"viewtime":30,"userid":"User_2","pageid":"Page_63"}
+    Consumed record with key 40 and value {"viewtime":40,"userid":"User_2","pageid":"Page_73"}
+    Consumed record with key 50 and value {"viewtime":50,"userid":"User_6","pageid":"Page_53"}
+    Consumed record with key 60 and value {"viewtime":60,"userid":"User_7","pageid":"Page_57"}
+    Consumed record with key 70 and value {"viewtime":70,"userid":"User_4","pageid":"Page_15"}
+    Consumed record with key 80 and value {"viewtime":80,"userid":"User_4","pageid":"Page_32"}
+    Consumed record with key 90 and value {"viewtime":90,"userid":"User_8","pageid":"Page_28"}
+    Consumed record with key 100 and value {"viewtime":100,"userid":"User_2","pageid":"Page_45"}
+    ```
+    
 ## **Clean Up Resources**
 
 Deleting the resources you created during this workshop will prevent you from incurring additional charges. 
