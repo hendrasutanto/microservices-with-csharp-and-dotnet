@@ -66,7 +66,7 @@
     <img src="images/login.png" width=50% height=50%>
 </div>
 
-2. If you are logging in for the first time, you will see a self-guided wizard that walks you through spinning up a cluster. Please minimize this as you will walk through those steps in this workshop. 
+1. If you are logging in for the first time, you will see a self-guided wizard that walks you through spinning up a cluster. Please minimize this as you will walk through those steps in this workshop. 
 
 *** 
 
@@ -82,27 +82,27 @@ An environment contains clusters and its deployed components such as Connectors,
     <img src="images/environment.png" width=50% height=50%>
 </div>
 
-2. Now that you have an environment, click **Create Cluster**. 
+1. Now that you have an environment, click **Create Cluster**. 
 
     > **Note:** Confluent Cloud clusters are available in 3 types: Basic, Standard, and Dedicated. Basic is intended for development use cases so you will use that for the workshop. Basic clusters only support single zone availability. Standard and Dedicated clusters are intended for production use and support Multi-zone deployments. If you are interested in learning more about the different types of clusters and their associated features and limits, refer to this [documentation](https://docs.confluent.io/current/cloud/clusters/cluster-types.html).
 
-3. Choose the **Basic** Cluster Type. 
+1. Choose the **Basic** Cluster Type. 
 
 <div align="center" padding=25px>
     <img src="images/cluster-type.png" width=50% height=50%>
 </div>
 
-4. Click **Begin Configuration**.
-5. Choose your preferred Cloud Provider (AWS, GCP, or Azure), Region, and Availability Zone.
-6. Specify a **Cluster Name** - any name will work here. 
+1. Click **Begin Configuration**.
+1. Choose your preferred Cloud Provider (AWS, GCP, or Azure), Region, and Availability Zone.
+1. Specify a **Cluster Name** - any name will work here. 
 
 <div align="center" padding=25px>
     <img src="images/create-cluster.png" width=50% height=50%>
 </div>
 
-7. View the associated Configuration & Cost, Usage Limits, and Uptime SLA information before launching.
+1. View the associated Configuration & Cost, Usage Limits, and Uptime SLA information before launching.
 
-8. Click **Launch Cluster.**
+1. Click **Launch Cluster.**
 
 <div align="center" padding=25px>
     <img src="images/launch-cluster.png" width=50% height=50%>
@@ -111,8 +111,8 @@ An environment contains clusters and its deployed components such as Connectors,
 ## <a name="step-3"></a>**Step 3: Create a ksqlDB Application**
 
 1. On the navigation menu, select **ksqlDB** and click **Create Application Myself**. 
-2. Select **Global Access** and then **Continue**.
-3. Name you ksqlDB application and set the streaming units to **1**. Click **Launch Application!**
+1. Select **Global Access** and then **Continue**.
+1. Name you ksqlDB application and set the streaming units to **1**. Click **Launch Application!**
 
 > **Note:** A Confluent Streaming Unit is the unit of pricing for Confluent Cloud ksqlDB. A CSU is an abstract unit that represents the size of your kSQL cluster and scales linearly. 
 
@@ -130,19 +130,19 @@ An environment contains clusters and its deployed components such as Connectors,
     <img src="images/cluster-overview.png" width=50% height=50%>
 </div>
 
-2. Click on **Settings**. This is an important tab that should be noted. This is where you can find your cluster ID, bootstrap server (also known as broker endpoint), cloud details, cluster type, and capacity limits. 
-3. Copy and save the bootstrap server - you will use it later in the workshop.
-4. On that same navigation menu, select **Topics** and click **Create Topic**. 
-5. Enter **pageviews** as the Topic name and **1** as the Number of partitions, then click on **Create with defaults**.
+1. Click on **Settings**. This is an important tab that should be noted. This is where you can find your cluster ID, bootstrap server (also known as broker endpoint), cloud details, cluster type, and capacity limits. 
+1. Copy and save the bootstrap server - you will use it later in the workshop.
+1. On that same navigation menu, select **Topics** and click **Create Topic**. 
+1. Enter **pageviews** as the Topic name and **1** as the Number of partitions, then click on **Create with defaults**.
     <div align="center" padding=25px>
        <img src="images/new-topic.png" width=50% height=50%>
     </div>
 
     > **Note:** Topics have many configurable parameters that dictate how messages are handled. A complete list of those configurations for Confluent Cloud can be found [here](https://docs.confluent.io/cloud/current/using/broker-config.html).  If you are interested in viewing the default configurations, you can view them in the Topic Summary on the right side. 
 
-6. After creation, the **Topics UI** allows you to monitor production and consumption throughput metrics and the configuration parameters for your topics. When you begin sending messages to Confluent Cloud, you will be able to view those messages and message schemas. 
+1. After creation, the **Topics UI** allows you to monitor production and consumption throughput metrics and the configuration parameters for your topics. When you begin sending messages to Confluent Cloud, you will be able to view those messages and message schemas. 
 
-7. Below is a look at your topic, pageviews, but you need to send data to this topic before you see any metrics. 
+1. Below is a look at your topic, pageviews, but you need to send data to this topic before you see any metrics. 
     <div align="center" padding=25px>
        <img src="images/topic-overview.png" width=50% height=50%>
     </div>
@@ -150,14 +150,14 @@ An environment contains clusters and its deployed components such as Connectors,
 ## <a name="step-5"></a>**Step 5: Create an API Key Pair**
 
 1. Select **API keys** on the navigation menu. 
-2. If this is your first API key within your cluster, click **Create key**. If you have set up API keys in your cluster in the past and already have an existing API key, click **+ Add key**.
+1. If this is your first API key within your cluster, click **Create key**. If you have set up API keys in your cluster in the past and already have an existing API key, click **+ Add key**.
     <div align="center" padding=25px>
        <img src="images/create-cc-api-key.png" width=50% height=50%>
     </div>
 
-3. Select **Global Access**, then click Next.
-4. Save your API key and secret - you will need these during the workshop.
-5. After creating and saving the API key, you will see this API key in the Confluent Cloud UI in the **API keys** tab. If you don’t see the API key populate right away, refresh the browser. 
+1. Select **Global Access**, then click Next.
+1. Save your API key and secret - you will need these during the workshop.
+1. After creating and saving the API key, you will see this API key in the Confluent Cloud UI in the **API keys** tab. If you don’t see the API key populate right away, refresh the browser. 
 
 ## <a name="step-6"></a>**Step 6: Enable Schema Registry**
 
@@ -170,7 +170,7 @@ Confluent Cloud Schema Registry is used to manage schemas and it defines a scope
       <img src="images/sr-cluster.png" width=75% height=75%>
   </div>
 
-2. Click on **Schema Registry**. Select your cloud provider and region, and then click on **Enable Schema Registry**.
+1. Click on **Schema Registry**. Select your cloud provider and region, and then click on **Enable Schema Registry**.
   <div align="center">
       <img src="images/sr-tab.png" width=75% height=75%>
   </div>
@@ -290,12 +290,12 @@ In real world, the user data is usually stored in a database and a Debezium/CDC 
        <img src="images/cc-fully-managed-connectors.png" width=75% height=75%>
     </div>
 
-2. Click on **Connect** for the Datagen Source. 
+1. Click on **Connect** for the Datagen Source. 
     <div align="center">
        <img src="images/cc-source-datagen.png" width=25% height=25%>\
     </div>
 
-3. Complete the configuration details. 
+1. Complete the configuration details. 
 
     | Configuration Setting               | Value                         |
     |------------------------|-----------------------------------------|
@@ -314,18 +314,18 @@ In real world, the user data is usually stored in a database and a Debezium/CDC 
        <img src="images/cc-datagen-config-example.png" width=75% height=75%>
     </div>
 
-4. View the connector, its status, and metrics on the **Connectors** page.
+1. View the connector, its status, and metrics on the **Connectors** page.
 
     <div align="center">  
        <img src="images/cc-connector-status.png" width=75% height=75%>
     </div>
     
-5. Once the connector is successfully launched. Navigate to `Topics` and select `users` topic.
+1. Once the connector is successfully launched. Navigate to `Topics` and select `users` topic.
 
-6. You should see some messages being produced on this topic under the `Messages` tab.
+1. You should see some messages being produced on this topic under the `Messages` tab.
    > **Note:** The messages contain some unreadable characters due to the Avro format.
 
-7. Click on the `Schema` tab. Here you can see the schema value for your topic. The following is an example of what your schema may look like. Note that it shows the Format (AVRO), Compatibility Mode (Default is set as Backward), Schema ID, and Version.
+1. Click on the `Schema` tab. Here you can see the schema value for your topic. The following is an example of what your schema may look like. Note that it shows the Format (AVRO), Compatibility Mode (Default is set as Backward), Schema ID, and Version.
 
     <div align="center">
        <img src="images/cc-schema.png" width=75% height=75%>
@@ -353,7 +353,7 @@ To learn more about *streams* and *tables*, the following resources are recommen
 
 > **Note:** You can interact with ksqlDB through the **Editor**. You can create a stream by using the `CREATE STREAM` statement and a table using the `CREATE TABLE` statement. <br><br>To write streaming queries against **users_topic** and **stocks_topic**, you will need to register the topics with ksqlDB as a stream and/or table. 
 
-2. First, create a **Stream** by registering the **pageviews** topic as a stream called **pageviews**. 
+1. First, create a **Stream** by registering the **pageviews** topic as a stream called **pageviews**. 
 
    ```sql
    CREATE STREAM pageviews (
@@ -366,26 +366,26 @@ To learn more about *streams* and *tables*, the following resources are recommen
    );
    ```
 
-3. Next, go to the **Streams** tab at the top and click on **PAGEVIEWS**. This provides information on the stream, output topic (including replication, partitions, and key and value serialization), and schemas.
+1. Next, go to the **Streams** tab at the top and click on **PAGEVIEWS**. This provides information on the stream, output topic (including replication, partitions, and key and value serialization), and schemas.
 
 <div align="center">
     <img src="images/stream-detail.png" width=50% height=50%>
 </div>
 
-4. Click on **Query Stream** which will take you back to the **Editor**. You will see the following query auto-populated in the editor which may be already running by default. If not, click on **Run query**. To see data already in the topic, you can set the `auto.offset.reset=earliest` property before clicking **Run query**. <br> <br> Optionally, you can navigate to the editor and construct the select statement on your own, which should look like the following.
+1. Click on **Query Stream** which will take you back to the **Editor**. You will see the following query auto-populated in the editor which may be already running by default. If not, click on **Run query**. To see data already in the topic, you can set the `auto.offset.reset=earliest` property before clicking **Run query**. <br> <br> Optionally, you can navigate to the editor and construct the select statement on your own, which should look like the following.
 
    ```sql
    SELECT * FROM PAGEVIEWS EMIT CHANGES;
    ```
 
-5. You should see the following data within your **PAGEVIEWSM** stream.
+1. You should see the following data within your **PAGEVIEWSM** stream.
 
 <div align="center">
     <img src="images/pageviews-stream-select-results.png" width=75% height=75%>
 </div>
 
-6. Click **Stop**. 
-7. Next, create a **Table** by registering the **users** topic as a table named **users**. Copy the following code into the **Editor** and click **Run**.
+1. Click **Stop**. 
+1. Next, create a **Table** by registering the **users** topic as a table named **users**. Copy the following code into the **Editor** and click **Run**.
    ```sql
    CREATE TABLE users (
        id VARCHAR PRIMARY KEY
@@ -396,7 +396,7 @@ To learn more about *streams* and *tables*, the following resources are recommen
    ```
    > **Note:** ksqlDB can integrate with Confluent Schema Registry and automatically retrieves (reads) and registers (writes) schemas as needed, which spares you from defining columns and data types manually in `CREATE` statements and from manual interaction with Schema Registry.
 
-8. Once you have created the **USERS** table, repeat what you did above with **PAGEVIEWS** stream and query the **USERS** table. This time, select the **Tables** tab and then select the **USERS** table. You can also set the `auto.offset.reset=earliest`. Like above, if you prefer to construct the statement on your own, make sure it looks like the following.
+1. Once you have created the **USERS** table, repeat what you did above with **PAGEVIEWS** stream and query the **USERS** table. This time, select the **Tables** tab and then select the **USERS** table. You can also set the `auto.offset.reset=earliest`. Like above, if you prefer to construct the statement on your own, make sure it looks like the following.
 
    ```sql
    SELECT * FROM USERS EMIT CHANGES;
@@ -410,7 +410,7 @@ To learn more about *streams* and *tables*, the following resources are recommen
 
 > **Note:** Note: If the output does not show up immediately, you may have done everything correctly and it just needs a moment. Setting `auto.offset.reset=earliest` also helps output data faster since the messages are already in the topics.
 
-9. Stop the query by clicking **Stop**. 
+1. Stop the query by clicking **Stop**. 
 
 ***
 
@@ -430,7 +430,7 @@ A *Persistent Query* runs indefinitely as it processes rows of events and writes
    EMIT CHANGES;
    ```
 
-2. Using the **Editor**, query the new stream. You can either type in a select statement or you can navigate to the stream and select the query button, similar to how you did it in a previous step. You can also choose to set `auto.offset.reset=earliest`. Your statement should be the following. 
+1. Using the **Editor**, query the new stream. You can either type in a select statement or you can navigate to the stream and select the query button, similar to how you did it in a previous step. You can also choose to set `auto.offset.reset=earliest`. Your statement should be the following. 
 
    ```sql
    SELECT * FROM PAGEVIEWS_ENRICHED EMIT CHANGES;
@@ -443,19 +443,19 @@ A *Persistent Query* runs indefinitely as it processes rows of events and writes
 
 > **Note:** Now that you have a stream of records from the left join of the **USERS** table and **PAGEVIEWS** stream, you can view the relationship between user and pageviews in real-time.
 
-4. Next, view the topic created when you created the persistent query with the left join. Navigate to the **Topics** tab on the left hand menu and then select the topic **pageviews_enriched**. 
+1. Next, view the topic created when you created the persistent query with the left join. Navigate to the **Topics** tab on the left hand menu and then select the topic **pageviews_enriched**. 
 
 <div align="center">
     <img src="images/pageviews-enriched-topic.png" width=75% height=75%>
 </div>
 
-5. Navigate to **Consumers** on the left hand menu and find the group that corresponds with your **PAGEVIEWS_ENRICHED** stream. See the screenshot below as an example. This view shows how well your persistent query is keeping up with the incoming data. You can monitor the consumer lag, current and end offsets, and which topics it is consuming from.
+1. Navigate to **Consumers** on the left hand menu and find the group that corresponds with your **PAGEVIEWS_ENRICHED** stream. See the screenshot below as an example. This view shows how well your persistent query is keeping up with the incoming data. You can monitor the consumer lag, current and end offsets, and which topics it is consuming from.
 
 <div align="center">
     <img src="images/ksql-consumer.png" width=75% height=75%>
 </div>
 
-6. Run the consumer application and consume the messages from **pageviews_enriched** topic.
+1. Run the consumer application and consume the messages from **pageviews_enriched** topic.
     ```bash
     # Run the consumer (Windows)
     dotnet run consume pageviews_enriched csharp.config /path/to/curl/cacert.pem
@@ -463,7 +463,7 @@ A *Persistent Query* runs indefinitely as it processes rows of events and writes
     # Run the consumer (other)
     dotnet run consume pageviews_enriched csharp.config
     ```
-7. Verify that the consumer received all the enriched messages. You should see:
+1. Verify that the consumer received all the enriched messages. You should see:
     ```bash
     Consumed record with key 10 and value {"viewtime":10,"userid":"User_3","pageid":"Page_44"}
     Consumed record with key 20 and value {"viewtime":20,"userid":"User_4","pageid":"Page_60"}
@@ -487,13 +487,13 @@ Deleting the resources you created during this workshop will prevent you from in
     <img src="images/delete-ksqldb.png" width=75% height=75%>
 </div>
 
-2. Next, delete the Datagen Source connectors for **users**. Navigate to the **Connectors** tab and select the **users** connector. In the top right corner, you will see a **trash** icon. Click the icon and enter the **Connector Name**. Delete the **users** connector.
+1. Next, delete the Datagen Source connectors for **users**. Navigate to the **Connectors** tab and select the **users** connector. In the top right corner, you will see a **trash** icon. Click the icon and enter the **Connector Name**. Delete the **users** connector.
 
 <div align="center">
     <img src="images/delete-connectors.png" width=75% height=75%>
 </div>
 
-3. Finally, under **Cluster Settings**, select the **Delete Cluster** button at the bottom. Enter the **Cluster Name** and select **Confirm**. 
+1. Finally, under **Cluster Settings**, select the **Delete Cluster** button at the bottom. Enter the **Cluster Name** and select **Confirm**. 
 
 <div align="center">
     <img src="images/delete-cluster.png" width=50% height=50%>
