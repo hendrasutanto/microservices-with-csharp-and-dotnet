@@ -131,7 +131,7 @@ An environment contains clusters and its deployed components such as Connectors,
        <img src="images/cluster-overview.png" width=50% height=50%>
    </div>
 
-1. Click on **Settings**. This is an important tab that should be noted. This is where you can find your cluster ID, bootstrap server (also known as broker endpoint), cloud details, cluster type, and capacity limits. 
+1. Click on **Cluster settings**. This is an important tab that should be noted. This is where you can find your cluster ID, bootstrap server (also known as broker endpoint), cloud details, cluster type, and capacity limits. 
 1. Copy and save the bootstrap server - you will use it later in the workshop.
 1. On that same navigation menu, select **Topics** and click **Create Topic**. 
 1. Enter **pageviews** as the Topic name and **1** as the Number of partitions, then click on **Create with defaults**.
