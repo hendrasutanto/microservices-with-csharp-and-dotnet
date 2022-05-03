@@ -59,11 +59,11 @@
 
 ## **Objective:**
 
-Welcome to “Microservices with C# and .NET”! In this workshop, you will learn how to use .NET and C# to create a client application that produce and consume events in Confluent Cloud. You will also learn how to build stream processing applications using ksqlDB as well as learn about the use cases ksqlDB unlocks: streaming ETL, data discovery and enrichment, anomaly detection, and more.
+Welcome to “Microservices with C# and .NET”! In this workshop, you will learn how to use .NET and C# to create a client application that produces and consume events in Confluent Cloud. You will also learn how to build stream processing applications using ksqlDB as well as learn about the use cases ksqlDB unlocks: streaming ETL, data discovery and enrichment, anomaly detection, and more.
 
 Once you have connected data from various sources to Confluent Cloud, you'll start thinking about how to join data from different topics, transform, and enrich the data in real-time. You can do that by using ksqlDB to create stream processing applications, all by using simple SQL statements. ksqlDB is available as a fully managed service within Confluent Cloud.
 
-By the conclusion of the workshop, you will have learned how to create produer and consumer application using .NET and C# and leverage ksqlDB to perform continuous transformations, create materialized views, and serve lookups against these materialized views all with the data you already have in Confluent Cloud.
+By the conclusion of the workshop, you will have learned how to create producer and consumer applications using .NET and C# and leverage ksqlDB to perform continuous transformations, create materialized views, and serve lookups against these materialized views all with the data you already have in Confluent Cloud.
 
 ## <a name="step-1"></a>**Step 1: Log in to Confluent Cloud**
 1. Log in to [Confluent Cloud](https://confluent.cloud) and enter your email and password.
