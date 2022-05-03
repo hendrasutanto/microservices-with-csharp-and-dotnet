@@ -352,7 +352,7 @@ In real world, the user data is usually stored in a database and a Debezium/CDC 
     
    For more information about schema evolution and compatibility, click [here](https://docs.confluent.io/platform/current/schema-registry/avro.html)
 
-## <a name="step-9"></a>**Step 9: Real-Time Data Transformations and Stream Processing wiith ksqlDB**
+## <a name="step-9"></a>**Step 9: Real-Time Data Transformations and Stream Processing with ksqlDB**
 
 ### Create a Stream and a Table
 
@@ -433,7 +433,7 @@ To learn more about *streams* and *tables*, the following resources are recommen
 
 ***
 
-## <a name="step-10"></a>Create a Persistent Query
+## Create a Persistent Query
 
 A *Persistent Query* runs indefinitely as it processes rows of events and writes to a new topic. You can create persistent queries by deriving new streams and new tables from existing streams or tables.
 
@@ -493,7 +493,7 @@ A *Persistent Query* runs indefinitely as it processes rows of events and writes
     Consumed record with key User_7 and value {"PAGEID":"Page_63","REGIONID":"Region_5","GENDER":"FEMALE"}
     ```
     
-## **Clean Up Resources**
+## <a name="step-10"></a>**Clean Up Resources**
 
 Deleting the resources you created during this workshop will prevent you from incurring additional charges. 
 
@@ -516,7 +516,7 @@ Deleting the resources you created during this workshop will prevent you from in
    </div>
 
 
-## **Confluent Resources and Further Testing**
+## <a name="step-11"></a>**Confluent Resources and Further Testing**
 
 Here are some links to check out if you are interested in further testing:
 - [ksqlDB Tutorials](https://kafka-tutorials.confluent.io/)
