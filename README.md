@@ -466,16 +466,13 @@ A *Persistent Query* runs indefinitely as it processes rows of events and writes
     ```
 1. Verify that the consumer received all the enriched messages. You should see:
     ```bash
-    Consumed record with key 10 and value {"viewtime":10,"userid":"User_3","pageid":"Page_44"}
-    Consumed record with key 20 and value {"viewtime":20,"userid":"User_4","pageid":"Page_60"}
-    Consumed record with key 30 and value {"viewtime":30,"userid":"User_2","pageid":"Page_63"}
-    Consumed record with key 40 and value {"viewtime":40,"userid":"User_2","pageid":"Page_73"}
-    Consumed record with key 50 and value {"viewtime":50,"userid":"User_6","pageid":"Page_53"}
-    Consumed record with key 60 and value {"viewtime":60,"userid":"User_7","pageid":"Page_57"}
-    Consumed record with key 70 and value {"viewtime":70,"userid":"User_4","pageid":"Page_15"}
-    Consumed record with key 80 and value {"viewtime":80,"userid":"User_4","pageid":"Page_32"}
-    Consumed record with key 90 and value {"viewtime":90,"userid":"User_8","pageid":"Page_28"}
-    Consumed record with key 100 and value {"viewtime":100,"userid":"User_2","pageid":"Page_45"}
+    Consumed record with key User_7 and value {"PAGEID":"Page_58","REGIONID":"Region_5","GENDER":"FEMALE"}
+    Consumed record with key User_7 and value {"PAGEID":"Page_52","REGIONID":"Region_5","GENDER":"FEMALE"}
+    Consumed record with key User_3 and value {"PAGEID":"Page_28","REGIONID":"Region_7","GENDER":"FEMALE"}
+    Consumed record with key User_1 and value {"PAGEID":"Page_28","REGIONID":"Region_1","GENDER":"FEMALE"}
+    Consumed record with key User_1 and value {"PAGEID":"Page_48","REGIONID":"Region_1","GENDER":"FEMALE"}
+    Consumed record with key User_8 and value {"PAGEID":"Page_59","REGIONID":"Region_7","GENDER":"FEMALE"}
+    Consumed record with key User_7 and value {"PAGEID":"Page_63","REGIONID":"Region_5","GENDER":"FEMALE"}
     ```
     
 ## **Clean Up Resources**
