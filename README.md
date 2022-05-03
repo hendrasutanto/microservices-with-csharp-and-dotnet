@@ -450,7 +450,7 @@ A *Persistent Query* runs indefinitely as it processes rows of events and writes
        <img src="images/pageviews-enriched-topic.png" width=75% height=75%>
    </div>
 
-1. Navigate to **Consumers** on the left hand menu and find the group that corresponds with your **PAGEVIEWS_ENRICHED** stream. See the screenshot below as an example. This view shows how well your persistent query is keeping up with the incoming data. You can monitor the consumer lag, current and end offsets, and which topics it is consuming from.
+1. Navigate to **Data integration** -> **Clients** -> **Consumer lag** on the left hand menu and find the group that corresponds with your **PAGEVIEWS_ENRICHED** stream. See the screenshot below as an example. This view shows how well your persistent query is keeping up with the incoming data. You can monitor the consumer lag, current and end offsets, and which topics it is consuming from.
 
    <div align="center">
        <img src="images/ksql-consumer.png" width=75% height=75%>
