@@ -8,6 +8,19 @@
 
 ## **Agenda**
 
+1. [Log in to Confluent Cloud](#step-1)
+1. [Create an Environment and Cluster](#step-2)
+1. [Create a ksqlDB Application](#step-3)
+1. [Create a Topic and Cloud Dashboard Walkthrough](#step-4)
+1. [Create an API Key Pair](#step-5)
+1. [Enable Schema Registry](#step-6)
+1. [Connect C# Producer and Consumer to Confluent Cloud](#step-7)
+1. [Launch Fully-Managed Datagen Source Connector in Confluent Cloud](#step-8)
+1. [Real-Time Data Transformations and Stream Processing with ksqlDB](#step-9)
+1. [Launch: PostgreSQL Source Connector in Confluent Control Center](#step-9)
+1. [Clean Up Resources](#step-10)
+1. [Confluent Resources and Further Testing](#step-11)
+
 ***
 
 ## **Architecture**
