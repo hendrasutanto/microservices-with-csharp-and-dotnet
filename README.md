@@ -123,7 +123,7 @@ An environment contains clusters and its deployed components such as Connectors,
 
 ## <a name="step-4"></a>**Step 4: Create a Topic and Cloud Dashboard Walkthrough**
 
-1. On the left hand side navigation menu, you will see **Cluster**.
+1. On the left hand side navigation menu, you will see **Cluster overview**.
 
    This section shows Cluster Metrics, such as Throughput and Storage. This page also shows the number of Topics, Partitions, Connectors, and ksqlDB Applications.  Below is an example of the metrics dashboard once you have data flowing through Confluent Cloud. 
 
