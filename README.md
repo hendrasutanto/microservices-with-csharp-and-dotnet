@@ -379,7 +379,7 @@ To learn more about *streams* and *tables*, the following resources are recommen
    SELECT * FROM PAGEVIEWS EMIT CHANGES;
    ```
 
-1. You should see the following data within your **PAGEVIEWSM** stream.
+1. You should see the following data within your **PAGEVIEWS** stream.
 
    <div align="center">
        <img src="images/pageviews-stream-select-results.png" width=75% height=75%>
