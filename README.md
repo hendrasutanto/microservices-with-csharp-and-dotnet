@@ -10,10 +10,10 @@
 
 1. [Log in to Confluent Cloud](#step-1)
 1. [Create an Environment and Cluster](#step-2)
-1. [Create a ksqlDB Application](#step-3)
-1. [Create a Topic and Cloud Dashboard Walkthrough](#step-4)
-1. [Create an API Key Pair](#step-5)
-1. [Enable Schema Registry](#step-6)
+1. [Enable Schema Registry](#step-3)
+1. [Create a ksqlDB Application](#step-4)
+1. [Create a Topic and Cloud Dashboard Walkthrough](#step-5)
+1. [Create an API Key Pair](#step-6)
 1. [Connect C# Producer and Consumer to Confluent Cloud](#step-7)
 1. [Launch Fully-Managed Datagen Source Connector in Confluent Cloud](#step-8)
 1. [Real-Time Data Transformations and Stream Processing with ksqlDB](#step-9)
@@ -126,7 +126,23 @@ An environment contains clusters and its deployed components such as Connectors,
        <img src="images/launch-cluster.png" width=50% height=50%>
    </div>
 
-## <a name="step-3"></a>**Step 3: Create a ksqlDB Application**
+## <a name="step-3"></a>**Step 3: Enable Schema Registry**
+
+A topic contains messages, and each message is a key-value pair. The message key or the message value (or both) can be serialized as JSON, Avro, or Protobuf. A schema defines the structure of the data format. 
+
+Confluent Cloud Schema Registry is used to manage schemas and it defines a scope in which schemas can evolve. It stores a versioned history of all schemas, provides multiple compatibility settings, and allows schemas to evolve according to these compatibility settings. It is also fully-managed.
+
+1. Return to your environment by clicking on the Confluent icon at the top left corner and then clicking your environment tile.
+   <div align="center">
+       <img src="images/sr-cluster.png" width=75% height=75%>
+   </div>
+
+1. Click on **Schema Registry**. Select your cloud provider and region, and then click on **Enable Schema Registry**.
+   <div align="center">
+       <img src="images/sr-tab.png" width=75% height=75%>
+   </div>
+
+## <a name="step-4"></a>**Step 4: Create a ksqlDB Application**
 
 1. On the navigation menu, select **ksqlDB** and click **Create Application Myself**. 
 1. Select **Global Access** and then **Continue**.
@@ -139,7 +155,7 @@ An environment contains clusters and its deployed components such as Connectors,
        <img src="images/create-application.png" width=50% height=50%>
    </div>
 
-## <a name="step-4"></a>**Step 4: Create a Topic and Cloud Dashboard Walkthrough**
+## <a name="step-5"></a>**Step 5: Create a Topic and Cloud Dashboard Walkthrough**
 
 1. On the left hand side navigation menu, you will see **Cluster overview**.
 
@@ -166,7 +182,7 @@ An environment contains clusters and its deployed components such as Connectors,
       <img src="images/topic-overview.png" width=50% height=50%>
    </div>
 
-## <a name="step-5"></a>**Step 5: Create an API Key Pair**
+## <a name="step-6"></a>**Step 6: Create an API Key Pair**
 
 1. Select **API keys** on the navigation menu. 
 1. If this is your first API key within your cluster, click **Create key**. If you have set up API keys in your cluster in the past and already have an existing API key, click **+ Add key**.
@@ -177,22 +193,6 @@ An environment contains clusters and its deployed components such as Connectors,
 1. Select **Global Access**, then click Next.
 1. Save your API key and secret - you will need these during the workshop.
 1. After creating and saving the API key, you will see this API key in the Confluent Cloud UI in the **API keys** tab. If you don’t see the API key populate right away, refresh the browser. 
-
-## <a name="step-6"></a>**Step 6: Enable Schema Registry**
-
-A topic contains messages, and each message is a key-value pair. The message key or the message value (or both) can be serialized as JSON, Avro, or Protobuf. A schema defines the structure of the data format. 
-
-Confluent Cloud Schema Registry is used to manage schemas and it defines a scope in which schemas can evolve. It stores a versioned history of all schemas, provides multiple compatibility settings, and allows schemas to evolve according to these compatibility settings. It is also fully-managed.
-
-1. Return to your environment by clicking on the Confluent icon at the top left corner and then clicking your environment tile.
-   <div align="center">
-       <img src="images/sr-cluster.png" width=75% height=75%>
-   </div>
-
-1. Click on **Schema Registry**. Select your cloud provider and region, and then click on **Enable Schema Registry**.
-   <div align="center">
-       <img src="images/sr-tab.png" width=75% height=75%>
-   </div>
 
 ## <a name="step-7"></a>**Step 7: Connect C# Producer and Consumer to Confluent Cloud**
 
